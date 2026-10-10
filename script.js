@@ -18,16 +18,20 @@ function node(tag, text, className) {
 function bookCover(book) {
   const wrapper = node('div', '', 'cover-frame');
   const cover = node('img');
-  cover.src = book.cover;
   cover.alt = `${book.title} book cover`;
+  cover.hidden = true;
   const fallback = node('div', '', 'cover-unavailable');
   fallback.append(node('span', '✧', 'fallback-star'), node('p', book.title, 'fallback-title'), node('p', book.author, 'fallback-author'), node('small', 'Cover image unavailable'));
-  fallback.hidden = true;
+  cover.addEventListener('load', () => {
+    cover.hidden = false;
+    fallback.hidden = true;
+  });
   cover.addEventListener('error', () => {
     cover.hidden = true;
     fallback.hidden = false;
   });
   wrapper.append(cover, fallback);
+  cover.src = book.cover;
   return wrapper;
 }
 for (const book of books) {
