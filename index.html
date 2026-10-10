@@ -3,31 +3,36 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="theme-color" content="#183c34">
+  <meta name="description" content="A romantic fantasy library of enchanted worlds, beloved books, and the words that stay with us.">
   <title>The Enchanted Library</title>
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
   <div class="lights" aria-hidden="true"></div>
-  <header><a class="brand" href="#">✦ THE ENCHANTED LIBRARY</a><a href="#collection">Explore the collection <span>↗</span></a></header>
+  <header><a class="brand" href="#"><span class="brand-mark">✧</span><span>THE ENCHANTED<br>LIBRARY</span></a><nav aria-label="Main navigation"><a href="#collection">The bookshelf</a><a href="#about">Our little world</a></nav><span class="header-note">A haven for dreamers <span>✦</span></span></header>
   <main>
     <section class="hero">
       <div class="stars" aria-hidden="true">✧</div>
-      <p class="eyebrow">FOR THE STORIES THAT STAY WITH US</p>
-      <h1>Between pages,<br> <em>magic awaits.</em></h1>
-      <p class="intro">A little sanctuary for faraway kingdoms, enchanted worlds,<br class="desktop"> and the books that feel like coming home.</p>
-      <a class="button" href="#collection">Enter the library <span>✧</span></a>
+      <div class="hero-copy"><p class="eyebrow">ROMANCE. WONDER. A LITTLE MAGIC.</p>
+      <h1>Some stories<br>are a kind of<br><em>enchantment.</em></h1>
+      <p class="intro">For hearts that wander through enchanted kingdoms.<br class="desktop"> For love stories written in starlight.<br class="desktop"> For the books we never quite leave behind.</p>
+      <a class="button" href="#collection">Find your next enchantment <span>›</span></a>
+      <div class="hero-caption"><span>✧</span> ONE MORE CHAPTER. ONE MORE WORLD.</div></div>
       <div class="landscape" aria-hidden="true">
         <div class="moon"></div><div class="mountain back"></div><div class="mountain front"></div>
         <svg class="castle" viewBox="0 0 320 240"><path d="M35 240V132H22L48 77l26 55H61v36h38V87H85l25-57 25 57h-14v46h30V53h-13L161 0l24 53h-13v80h29V88h-13l26-58 25 58h-14v80h34v-36h-13l26-55 27 55h-14v108H181v-44a20 20 0 0 0-40 0v44Z" fill="currentColor"/><g fill="#d6b76f"><path d="M105 103h8v18h-8zM157 72h8v21h-8zM210 104h8v18h-8zM44 147h8v13h-8zM268 148h8v13h-8z"/></g></svg>
       </div>
-      <p class="footnote">EVERY BOOK IS A DOOR TO ANOTHER WORLD</p>
+      <div class="art-caption"><span>01 / A WORLD BEYOND THE ORDINARY</span><em>Where the impossible feels possible.</em></div>
     </section>
+    <div class="ribbon" aria-hidden="true"><span>Enchanted kingdoms</span><i>✦</i><span>Impossible love</span><i>✦</i><span>Dangerous bargains</span><i>✦</i><span>Infinite endings</span></div>
     <section class="collection" id="collection">
-      <div class="section-heading"><div><p class="eyebrow">YOUR NEXT ADVENTURE</p><h2>The bookshelf</h2></div><span class="ornament" aria-hidden="true">⚔</span></div>
+      <div class="section-heading"><div><p class="eyebrow">THE STORIES WE FALL INTO</p><h2>A shelf full of <em>wonder.</em></h2></div><p class="section-note">Beautiful worlds. Unforgettable words.<br>Pick a book. Open a door.</p></div>
       <div id="books" class="books"></div>
       <div id="empty" class="empty"><span aria-hidden="true">✧</span><h3>A new story is about to begin.</h3><p>Your chosen books will find their home here, each with its own cover, favorite quote, and a little magic.</p></div>
     </section>
     <section id="book-detail" class="detail" hidden></section>
+    <section class="about" id="about"><svg class="swords" viewBox="0 0 64 64" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2"><path d="m12 8 7 3 31 35-5 5-33-36Zm40 0-7 3-31 35 5 5L52 15ZM37 51l14-14M13 37l14 14M48 49l9 9M16 49l-9 9"/><circle cx="57" cy="58" r="3"/><circle cx="7" cy="58" r="3"/></svg><p class="eyebrow">FOR THE HOPELESSLY ENCHANTED</p><h2>Not all magic needs a wand.<br><em>Sometimes, it needs a page.</em></h2><p>A quiet corner for fairy tales with sharp edges, hearts with a little hope,<br class="desktop"> and stories whose magic lingers long after the last chapter.</p><div class="about-divider" aria-hidden="true">— ✧ —</div></section>
   </main>
   <footer><span>✦ The Enchanted Library</span><span>Made for the love of stories.</span></footer>
   <script src="script.js"></script>

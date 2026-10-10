@@ -20,7 +20,8 @@ function bookCover(book) {
   const cover = node('img');
   cover.src = book.cover;
   cover.alt = `${book.title} book cover`;
-  const fallback = node('p', 'The book cover is currently unavailable.', 'cover-unavailable');
+  const fallback = node('div', '', 'cover-unavailable');
+  fallback.append(node('span', '✧', 'fallback-star'), node('p', book.title, 'fallback-title'), node('p', book.author, 'fallback-author'), node('small', 'Cover image unavailable'));
   fallback.hidden = true;
   cover.addEventListener('error', () => {
     cover.hidden = true;
@@ -33,7 +34,9 @@ for (const book of books) {
   const card = node('a', '', 'book-card');
   card.href = `#book/${encodeURIComponent(book.id)}`;
   const cover = bookCover(book);
-  card.append(cover, node('h3', book.title), node('p', book.author));
+  const content = node('div', '', 'card-content');
+  content.append(node('p', '01 / THE ENCHANTED COLLECTION', 'eyebrow'), node('p', 'A fairy tale with a dangerous heart', 'book-kicker'), node('h3', book.title), node('p', `by ${book.author}`, 'book-author'), node('blockquote', book.quote), node('span', 'Step into the story  ›', 'story-link'));
+  card.append(cover, content);
   shelf.append(card);
 }
 document.querySelector('#empty').hidden = books.length > 0;
@@ -41,6 +44,8 @@ function renderPage() {
   const book = books.find(item => `#book/${encodeURIComponent(item.id)}` === location.hash);
   document.querySelector('.hero').hidden = Boolean(book);
   document.querySelector('.collection').hidden = Boolean(book);
+  document.querySelector('.ribbon').hidden = Boolean(book);
+  document.querySelector('.about').hidden = Boolean(book);
   detail.hidden = !book;
   detail.replaceChildren();
   document.title = book ? `${book.title} · The Enchanted Library` : 'The Enchanted Library';
@@ -49,7 +54,7 @@ function renderPage() {
   const content = node('div');
   const back = node('a', '← Back to the bookshelf');
   back.href = '#collection';
-  content.append(back, node('h1', book.title), node('p', book.author), node('blockquote', book.quote));
+  content.append(back, node('p', 'A TALE OF LOVE, BARGAINS & MAGIC', 'eyebrow'), node('h1', book.title), node('p', `by ${book.author}`, 'book-author'), node('div', '✧  ─────────  ✧', 'quote-divider'), node('blockquote', book.quote), node('p', 'Words to carry with you, long after the last page.', 'quote-note'));
   detail.append(cover, content);
   window.scrollTo(0, 0);
 }
