@@ -46,6 +46,8 @@ for (const book of books) {
 document.querySelector('#empty').hidden = books.length > 0;
 function renderPage() {
   const book = books.find(item => `#book/${encodeURIComponent(item.id)}` === location.hash);
+  // Cancel scrolling before changing the page height, particularly on iOS.
+  if (book) window.scrollTo({ top: 0, left: 0, behavior: 'instant' });
   document.querySelector('.hero').hidden = Boolean(book);
   document.querySelector('.collection').hidden = Boolean(book);
   document.querySelector('.ribbon').hidden = Boolean(book);
@@ -53,14 +55,22 @@ function renderPage() {
   detail.hidden = !book;
   detail.replaceChildren();
   document.title = book ? `${book.title} · The Enchanted Library` : 'The Enchanted Library';
-  if (!book) return;
+  if (!book) {
+    requestAnimationFrame(() => {
+      const target = location.hash === '#collection' ? shelf.closest('section')
+        : location.hash === '#about' ? document.querySelector('.about') : null;
+      if (target) target.scrollIntoView({ behavior: 'instant', block: 'start' });
+      else window.scrollTo({ top: 0, left: 0, behavior: 'instant' });
+    });
+    return;
+  }
   const cover = bookCover(book);
   const content = node('div');
   const back = node('a', '← Back to the bookshelf');
   back.href = '#collection';
   content.append(back, node('p', 'A TALE OF LOVE, BARGAINS & MAGIC', 'eyebrow'), node('h1', book.title), node('p', `by ${book.author}`, 'book-author'), node('div', '✧  ─────────  ✧', 'quote-divider'), node('blockquote', book.quote), node('p', 'Words to carry with you, long after the last page.', 'quote-note'));
   detail.append(cover, content);
-  window.scrollTo(0, 0);
+  requestAnimationFrame(() => window.scrollTo({ top: 0, left: 0, behavior: 'instant' }));
 }
 window.addEventListener('hashchange', renderPage);
 renderPage();
